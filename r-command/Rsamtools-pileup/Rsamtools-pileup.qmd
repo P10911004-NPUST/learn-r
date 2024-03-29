@@ -1,0 +1,38 @@
+---
+title: "Rsamtools-pileup"
+format: html
+editor: visual
+execute: 
+  include: false
+  echo: false
+---
+
+```{r}
+suppressMessages({
+    if (!require(BiocManager))
+        install.packages("BiocManager", quiet = TRUE)
+    if (!require(Rsamtools))
+        BiocManager::install("Rsamtools", ask = FALSE, update = FALSE)
+    library(Rsamtools)
+})
+```
+
+## Description
+
+`pileup` uses `PileupParam` and `ScanBamParam` objects to calculate pileup statistics for a BAM file. The result is a data.frame with columns summarizing counts of reads overlapping each genomic position, optionally differentiated on nucleotide, strand, and position within read.
+
+## Arguments
+
+```{r, eval=FALSE, echo=TRUE, include=TRUE}
+Rsamtools::pileup(
+    file = "BAM file path or Rsamtools::BamFile()",
+    index = "BAM index file path",
+    scanBamParam = ScanBamParam(),
+    pileupParam = PileupParam()
+)
+```
+
+```{r}
+scan_param <- Rsamtools::ScanBamParam()
+pile_param <- Rsamtools::PileupParam()
+```
