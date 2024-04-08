@@ -7,7 +7,7 @@ Generate an **outer product** of the array `X` and array `Y` applying
 with a function.
 
 $$
-A = 
+A \ = \ 
 \begin{bmatrix}
    a_1 \\
    a_2 \\
@@ -16,8 +16,8 @@ A =
 \otimes
 \begin{bmatrix} 
     b_1 & b_2 & b_3 
-\end{bmatrix}
-=
+\end{bmatrix} \
+= \
 \begin{bmatrix}
     a_1b_1 & a_1b_2 & a_1b_3 \\
     a_2b_1 & a_2b_2 & a_2b_3 \\
