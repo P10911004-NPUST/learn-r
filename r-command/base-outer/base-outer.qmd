@@ -6,7 +6,7 @@ execute:
   include: false
   echo: false
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## Description
@@ -31,8 +31,6 @@ A \ = \
 \end{bmatrix}
 $$
 
-
-
 ## Arguments
 ```{r, eval=FALSE, echo=TRUE, include=TRUE}
 base::outer(
@@ -42,8 +40,8 @@ base::outer(
 )
 ```
 
-## Examples
-```{r, echo=TRUE, include=TRUE}
+## Basic usage
+```{r, echo=TRUE, include=TRUE, collapse=TRUE}
 base::outer(
     X = c(letters[1:3]),
     Y = c(letters[1:3]),
