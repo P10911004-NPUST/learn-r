@@ -32,8 +32,11 @@ Rsamtools::pileup(
 )
 ```
 
+## Basic usage
 ```{r, echo=TRUE}
-bam <- list.files(system.file("extdata", package = "Rsamtools"), "\\.bam$", full.names = TRUE)
+bam <- list.files(system.file("extdata", package = "Rsamtools"), "ex1.bam$", full.names = TRUE)
+bai <- paste0(bam, ".bai")
+
 scan_param <- Rsamtools::ScanBamParam()
 pile_param <- Rsamtools::PileupParam()
 ```

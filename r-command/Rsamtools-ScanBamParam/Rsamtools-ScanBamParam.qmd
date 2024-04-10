@@ -1,0 +1,61 @@
+---
+title: "Rsamtools-pileup"
+format: gfm
+editor: source
+execute: 
+  include: false
+  echo: false
+---
+
+```{r}
+suppressMessages({
+    if (!require(BiocManager))
+        install.packages("BiocManager", quiet = TRUE)
+    if (!require(Rsamtools))
+        BiocManager::install("Rsamtools", ask = FALSE, update = FALSE)
+    library(Rsamtools)
+})
+```
+
+## Description
+
+Use `ScanBamParam()` to create a parameter object influencing what fields and which records are
+imported from a (binary) BAM file. Use of which requires that a BAM index file (<filename>.bai)
+exists.
+
+## Basic usage
+
+```{r, eval=FALSE, echo=TRUE, collapse=TRUE}
+sam_field <- c(
+    "qname", "flag", "rname", "strand", "pos", 
+    "qwidth", "mapq", "cigar", "mrnm", "mpos", 
+    "isize", "seq", "qual", "groupid", "mate_status"
+)
+
+gr <- GRanges(
+    seqnames = c("seq1", "seq2", "seq2"),
+    ranges = IRanges(
+        start = c(1000, 100, 1000),
+        end = c(1300, 140, 1500)
+    )
+)
+## equivalent:
+## GRanges(c(
+##     "seq1:1000-2000",
+##     "seq2:100-1000",
+##     "seq2:1000-2000"
+## ))
+
+param <- Rsamtools::ScanBamParam(
+    what = sam_field[c(1, 3, 5, 7, 8, 12)],
+    which = gr
+)
+
+bam <- list.files(system.file("extdata", package = "Rsamtools"), "ex1.bam$", full.names = TRUE)
+bai <- paste0(bam, ".bai")
+
+scan_bam <- scanBam(file = bam, param = param)
+scan_bam$`seq1:1000-1300`$seq
+```
+
+
